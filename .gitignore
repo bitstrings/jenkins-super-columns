@@ -11,4 +11,5 @@ bin
 .factorypath
 test-output
 .~lock.*
-
+.timestamp*
+work
