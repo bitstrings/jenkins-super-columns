@@ -1,5 +1,5 @@
 <?jelly escape-by-default='true'?>
 
 <j:jelly xmlns:j="jelly:core">
-    <th initialSortDir="down">${%DescriptionColumn.Header}</th>
+    <th initialSortDir="down">Name</th>
 </j:jelly>

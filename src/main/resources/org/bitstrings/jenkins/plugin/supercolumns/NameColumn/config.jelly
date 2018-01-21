@@ -1,0 +1,31 @@
+<?jelly escape-by-default='true'?>
+
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+         xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+         xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
+    <f:block>
+        <table>
+            <tr>
+                <td>
+                    <f:entry title="Default format">
+                        <f:textbox field="defaultFormat"/>
+                    </f:entry>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <f:entry title="Name regex">
+                        <f:textbox field="nameRegex"/>
+                    </f:entry>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <f:entry title="Matched format">
+                        <f:textbox field="matchedFormat"/>
+                    </f:entry>
+                </td>
+            </tr>
+        </table>
+    </f:block>
+</j:jelly>
