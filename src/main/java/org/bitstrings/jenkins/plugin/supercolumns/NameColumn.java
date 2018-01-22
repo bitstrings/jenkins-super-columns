@@ -1,11 +1,13 @@
 package org.bitstrings.jenkins.plugin.supercolumns;
 
+import static org.apache.commons.lang3.StringUtils.replace;
+
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import hudson.Extension;
+import hudson.Functions;
 import hudson.model.Job;
 
 public class NameColumn
@@ -39,12 +41,14 @@ public class NameColumn
     @Override
     public String getText( Job<?, ?> job )
     {
+        String fullDisplayName = Functions.htmlAttributeEscape( job.getFullDisplayName() );
+
         return
             ( nameRegex != null ) && nameRegex.matcher( job.getFullName() ).matches()
-                ? StringUtils.replace( matchedFormat, "{}", job.getFullDisplayName() )
+                ? replace( matchedFormat, "{}", fullDisplayName )
                 : defaultFormat == null
-                    ? job.getFullDisplayName()
-                    : StringUtils.replace( defaultFormat, "{}", job.getFullDisplayName() );
+                    ? fullDisplayName
+                    : replace( defaultFormat, "{}", fullDisplayName );
     }
 
     public String getDefaultFormat()

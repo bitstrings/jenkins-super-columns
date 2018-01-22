@@ -8,7 +8,7 @@
             <tr>
                 <td>
                     <f:entry title="Default format">
-                        <f:textbox field="defaultFormat"/>
+                        <f:textarea field="defaultFormat"/>
                     </f:entry>
                 </td>
             </tr>
@@ -22,7 +22,7 @@
             <tr>
                 <td>
                     <f:entry title="Matched format">
-                        <f:textbox field="matchedFormat"/>
+                        <f:textarea field="matchedFormat"/>
                     </f:entry>
                 </td>
             </tr>
