@@ -1,9 +1,8 @@
 package org.bitstrings.jenkins.plugin.supercolumns;
 
-import static org.apache.commons.lang3.StringUtils.replace;
-
 import java.util.regex.Pattern;
 
+import org.apache.commons.text.StrSubstitutor;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import hudson.Extension;
@@ -41,14 +40,21 @@ public class NameColumn
     @Override
     public String getText( Job<?, ?> job )
     {
-        String fullDisplayName = Functions.htmlAttributeEscape( job.getFullDisplayName() );
+        StrSubstitutor substitutor =
+            new StrSubstitutor(
+                new ExprLookup( job, str -> Functions.htmlAttributeEscape( str ) ) );
 
         return
             ( nameRegex != null ) && nameRegex.matcher( job.getFullName() ).matches()
-                ? replace( matchedFormat, "{}", fullDisplayName )
+                ? substitutor.replace( matchedFormat )
                 : defaultFormat == null
-                    ? fullDisplayName
-                    : replace( defaultFormat, "{}", fullDisplayName );
+                    ? job.getFullDisplayName()
+                    : substitutor.replace( defaultFormat );
+    }
+
+    public String getSomething( Object j )
+    {
+        return Functions.htmlAttributeEscape( j.getClass().toString() );
     }
 
     public String getDefaultFormat()

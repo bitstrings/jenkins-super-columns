@@ -1,7 +1,7 @@
 <?jelly escape-by-default='false'?>
 
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
-    <td style="${indenter.getCss( job )}">
+    <td style="${indenter.getCss( job )}" data="${job.fullDisplayName}">
         <a href="${jobBaseUrl}${job.shortUrl}" style="text-decoration: none">${it.getText( job )}</a>
     </td>
 </j:jelly>
