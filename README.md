@@ -1,2 +1,3 @@
-# super-columns
-Jenkins list view columns plugin
+# Jenkins Super Columns
+
+It's super!
