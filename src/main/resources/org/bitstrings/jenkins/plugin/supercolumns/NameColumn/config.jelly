@@ -26,6 +26,13 @@
                     </f:entry>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <f:entry title="Entry key">
+                        <f:textarea field="entryKey"/>
+                    </f:entry>
+                </td>
+            </tr>
         </table>
     </f:block>
 </j:jelly>

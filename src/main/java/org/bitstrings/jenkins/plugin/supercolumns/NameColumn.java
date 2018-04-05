@@ -15,12 +15,14 @@ public class NameColumn
     private final String defaultFormat;
     private final Pattern nameRegex;
     private final String matchedFormat;
+    private final String entryKey;
 
     @DataBoundConstructor
     public NameColumn(
             String defaultFormat,
             String nameRegex,
-            String matchedFormat )
+            String matchedFormat,
+            String entryKey )
     {
         super();
 
@@ -30,11 +32,12 @@ public class NameColumn
                 ? null
                 : Pattern.compile( nameRegex );
         this.matchedFormat = matchedFormat;
+        this.entryKey = entryKey;
     }
 
     public NameColumn()
     {
-        this( null, null, null );
+        this( null, null, null, null );
     }
 
     @Override
@@ -52,9 +55,13 @@ public class NameColumn
                     : substitutor.replace( defaultFormat );
     }
 
-    public String getSomething( Object j )
+    public String getEntryKey( Job<?, ?> job )
     {
-        return Functions.htmlAttributeEscape( j.getClass().toString() );
+        return
+            entryKey == null
+                ? Functions.htmlAttributeEscape( job.getName() )
+                : new StrSubstitutor( new ExprLookup( job, str -> Functions.htmlAttributeEscape( str ) ) )
+                    .replace( entryKey );
     }
 
     public String getDefaultFormat()
@@ -70,6 +77,11 @@ public class NameColumn
     public String getMatchedFormat()
     {
         return matchedFormat;
+    }
+
+    public String getEntryKey()
+    {
+        return entryKey;
     }
 
     @Extension
